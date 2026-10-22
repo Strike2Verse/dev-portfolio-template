@@ -44,9 +44,38 @@
                     <i class="fa-brands fa-github"></i>
                     <span>GitHub</span>
                 </a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <span></span><span></span>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- ================= MOBILE DRAWER ================= -->
+    <aside class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <span class="nav-logo">
+                <span class="logo-ob">JD</span><span class="logo-underscore">_</span><span class="logo-arrow">&gt;</span><span class="logo-arrow logo-arrow--accent">&gt;</span>
+            </span>
+            <button class="mobile-close" id="mobileClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <nav class="mobile-links">
+            <a href="#home" class="mobile-link"><span>01</span> Home</a>
+            <a href="#about" class="mobile-link"><span>02</span> About</a>
+            <a href="#skills" class="mobile-link"><span>03</span> Skills</a>
+            <a href="#projects" class="mobile-link"><span>04</span> Projects</a>
+            <a href="#certifications" class="mobile-link"><span>05</span> Certifications</a>
+            <a href="#contact" class="mobile-link"><span>06</span> Contact</a>
+        </nav>
+        <div class="mobile-footer">
+            <div class="mobile-socials">
+                <a data-link="github" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a data-link="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a data-link="email" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+        </div>
+    </aside>
+    <div class="backdrop" id="backdrop"></div>
 
     <main id="main">
     </main>
