@@ -289,6 +289,8 @@ button { font: inherit; color: inherit; }
 /* ---------- Responsive: navbar ---------- */
 @media (max-width: 1080px) {
     .nav-link { padding: 8px 10px; }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .project-card--featured { grid-column: span 2; }
 }
 
 @media (max-width: 960px) {
@@ -736,7 +738,11 @@ button { font: inherit; color: inherit; }
 }
 
 @media (max-width: 760px) {
-    .skills-grid { grid-template-columns: 1fr; }
+    .project-card--featured { grid-template-columns: 1fr; }
+    .project-card--featured .project-visual { border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
+    .project-card--featured .project-body { padding: 24px; }
+    .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+    .project-card--featured { grid-column: span 1; }
 }
 
 @media (max-width: 640px) {
@@ -759,10 +765,13 @@ button { font: inherit; color: inherit; }
     .about-main-card { padding: 26px 20px; }
     .focus-grid { grid-template-columns: 1fr; }
     .skill-card { padding: 22px 18px; }
+    .filter-bar { border-radius: 16px; justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-btn { white-space: nowrap; }
 }
 
 @media (hover: none) {
-    .card:hover, .focus-card:hover, .skill-card:hover { transform: none; }
+    .card:hover, .project-card:hover, .focus-card:hover, .skill-card:hover { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
