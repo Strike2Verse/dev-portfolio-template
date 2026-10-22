@@ -9,16 +9,23 @@
   <kbd>&nbsp;HTML5&nbsp;</kbd> <kbd>&nbsp;CSS3&nbsp;</kbd> <kbd>&nbsp;JavaScript&nbsp;</kbd> <a href="LICENSE"><kbd>&nbsp;License&nbsp;</kbd></a>
 </p>
 
+<p align="center">
+  <img src="assets/preview.png" alt="Preview of the portfolio hero section" width="820">
+</p>
+
 ---
 
 ## ✨ Features
 
-- Sticky navbar with a mobile slide-in menu
-- Hero section with a typing animation and an animated canvas planet
-- About, Skills, Projects and Certifications sections
-- Scroll progress bar and reveal-on-scroll animations
-- Cursor-spotlight card effects
-- Responsive and accessible (ARIA labels, skip link, reduced-motion support)
+- Floating glass navbar with a slide-in mobile menu
+- Hero with a typewriter headline and an animated canvas planet with orbiting rings
+- Scrolling tech marquee
+- About, Skills, Projects, Certifications and Contact sections
+- Filterable project cards, each with its own preview design
+- Scroll progress bar, smooth anchor scrolling and reveal-on-scroll animations
+- Cursor-spotlight card effects and polished button hovers
+- Responsive down to small phones
+- Accessible: skip link, ARIA labels, keyboard-friendly menu and reduced-motion support
 
 ## 🛠️ Tech Stack
 
@@ -27,6 +34,17 @@
 | Markup | HTML5 |
 | Styling | CSS3 (custom properties, grid, flexbox, keyframes) |
 | Behaviour | Vanilla JavaScript (Canvas API, IntersectionObserver) |
+
+## 📁 Project Structure
+
+```
+├── index.html       # Page markup and all sections
+├── style.css        # Design tokens, layout, components, responsive rules
+├── script.js        # PROFILE config, menu, scroll effects, typing, canvas planet
+└── assets/
+    ├── planet.webp  # Planet image used in the hero
+    └── preview.png  # Screenshot used in this README
+```
 
 ## 🚀 Getting Started
 
@@ -43,9 +61,11 @@ npx serve .
 
 ## 🎨 Customisation
 
-1. Replace the placeholder name, bio and links in `index.html`.
-2. Change the colors in the `:root` block at the top of `style.css`.
-3. Add your own projects and certifications to their sections.
+1. **Links and contact:** edit the `PROFILE` object at the top of `script.js`. Your email, GitHub, LinkedIn, project and certification links all come from there. Leave a value empty and its button shows "coming soon".
+2. **Text and sections:** replace the placeholder name, bio, skills, projects and certifications in `index.html`.
+3. **Typing headline:** change the `phrases` list in `script.js`.
+4. **Colours and fonts:** change the variables in the `:root` block at the top of `style.css`.
+5. **Planet image:** swap `assets/planet.webp`. If it's missing, a planet drawn in code is used instead.
 
 ## 📄 License
 
