@@ -980,3 +980,18 @@ button { font: inherit; color: inherit; }
     transform: translateX(-120%); transition: transform .7s var(--ease);
 }
 .btn:hover::before, .nav-cta-btn:hover::before, .email-btn:hover::before { transform: translateX(120%); }
+
+/* nav GitHub: gradient pill instead of flat white */
+.nav-cta-btn {
+    background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(34,211,238,.14));
+    color: #fff; border: 1px solid rgba(167,139,250,.45);
+    box-shadow: 0 0 0 0 rgba(139,92,246,.0), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.nav-cta-btn i { transition: transform .35s var(--ease); }
+.nav-cta-btn:hover {
+    background: linear-gradient(135deg, #a855f7, #6366f1 60%, #22d3ee);
+    border-color: rgba(255,255,255,.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px -6px rgba(139,92,246,.7), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.nav-cta-btn:hover i { transform: rotate(-12deg) scale(1.15); }
