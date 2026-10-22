@@ -161,6 +161,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /* ---------------- 7. Project filter ---------------- */
+    const grid = document.getElementById("projectsGrid");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const filter = btn.dataset.filter;
+            filterBtns.forEach(b => {
+                b.classList.toggle("is-active", b === btn);
+                b.setAttribute("aria-pressed", String(b === btn));
+            });
+            grid?.classList.toggle("is-filtered", filter !== "all");
+            grid?.querySelectorAll(".project-card").forEach(card => {
+                const show = filter === "all" || card.dataset.category.split(" ").includes(filter);
+                card.classList.toggle("is-hidden", !show);
+                card.classList.remove("is-entering");
+                if (show) {
+                    card.style.transitionDelay = "";
+                    card.classList.add("in", "revealed");
+                    void card.offsetWidth; // restart animation
+                    card.classList.add("is-entering");
+                }
+            });
+        });
+    });
+
     /* ---------------- 8. Card spotlight + subtle tilt (desktop) ---------------- */
     if (canHover && !reduceMotion) {
         document.querySelectorAll(".spotlight").forEach(card => {
