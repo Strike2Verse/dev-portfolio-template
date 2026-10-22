@@ -291,6 +291,7 @@ button { font: inherit; color: inherit; }
     .nav-link { padding: 8px 10px; }
     .projects-grid { grid-template-columns: repeat(2, 1fr); }
     .project-card--featured { grid-column: span 2; }
+    .cert-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 960px) {
@@ -846,7 +847,7 @@ button { font: inherit; color: inherit; }
     .project-card--featured { grid-template-columns: 1fr; }
     .project-card--featured .project-visual { border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
     .project-card--featured .project-body { padding: 24px; }
-    .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid, .skills-grid, .cert-grid { grid-template-columns: 1fr; }
     .project-card--featured { grid-column: span 1; }
 }
 
@@ -876,7 +877,7 @@ button { font: inherit; color: inherit; }
 }
 
 @media (hover: none) {
-    .card:hover, .project-card:hover, .focus-card:hover, .skill-card:hover { transform: none; }
+    .card:hover, .project-card:hover, .focus-card:hover, .skill-card:hover, .cert-card:hover { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
