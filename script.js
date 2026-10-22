@@ -161,6 +161,38 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    /* ---------------- 4. Reveal on scroll ---------------- */
+    // Once an element has faded in, drop the stagger delay and the slow reveal
+    // transition so hover effects respond instantly.
+    function finishReveal(el) {
+        el.classList.add("in");
+        el.addEventListener("transitionend", function onEnd(e) {
+            if (e.target !== el || e.propertyName !== "opacity") return;
+            el.removeEventListener("transitionend", onEnd);
+            el.style.transitionDelay = "";
+            el.classList.add("revealed");
+        });
+    }
+
+    const revealEls = document.querySelectorAll(".reveal");
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+        revealEls.forEach(el => el.classList.add("in", "revealed"));
+    } else {
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                // stagger siblings that appear together
+                const siblings = [...el.parentElement.children].filter(c => c.classList.contains("reveal"));
+                const idx = Math.max(0, siblings.indexOf(el));
+                el.style.transitionDelay = `${Math.min(idx, 6) * 70}ms`;
+                finishReveal(el);
+                obs.unobserve(el);
+            });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+        revealEls.forEach(el => revealObserver.observe(el));
+    }
+
     /* ---------------- 5. Typewriter ---------------- */
     const typingEl = document.getElementById("typing-text");
     const phrases = [
