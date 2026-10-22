@@ -135,6 +135,19 @@ document.addEventListener("DOMContentLoaded", () => {
             timer = setTimeout(tick, delay);
         }
 
+        function setTyping(on) {
+            if (on === running) return;
+            running = on;
+            if (on) tick(); else { clearTimeout(timer); timer = null; }
+        }
+
         tick();
+        const heroEl = document.getElementById("home");
+        let heroVisible = true;
+        const syncTyping = () => setTyping(heroVisible && !document.hidden);
+        if (heroEl && "IntersectionObserver" in window) {
+            new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; syncTyping(); }).observe(heroEl);
+        }
+        document.addEventListener("visibilitychange", syncTyping);
     }
 });
