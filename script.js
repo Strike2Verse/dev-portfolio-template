@@ -65,6 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-email]").forEach(el => { el.textContent = PROFILE.email; });
 
 
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
     /* ---------------- Toast ---------------- */
     const toast = document.getElementById("toast");
     let toastTimer;
