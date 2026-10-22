@@ -93,4 +93,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { rootMargin: "-40% 0px -55% 0px" });
     document.querySelectorAll("section[id]").forEach(s => sectionObserver.observe(s));
 
+
+    /* ---------------- 1. Mobile drawer ---------------- */
+    const toggle = document.getElementById("mobileToggle");
+    const closeBtn = document.getElementById("mobileClose");
+    const menu = document.getElementById("mobileMenu");
+    const backdrop = document.getElementById("backdrop");
+
+    function setMenu(open) {
+        if (!menu || !backdrop) return;
+        menu.classList.toggle("open", open);
+        backdrop.classList.toggle("open", open);
+        toggle?.setAttribute("aria-expanded", String(open));
+        document.body.style.overflow = open ? "hidden" : "";
+    }
+    toggle?.addEventListener("click", () => setMenu(true));
+    closeBtn?.addEventListener("click", () => setMenu(false));
+    backdrop?.addEventListener("click", () => setMenu(false));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
 });
