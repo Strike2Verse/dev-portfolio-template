@@ -9,6 +9,10 @@
   <kbd>&nbsp;HTML5&nbsp;</kbd> <kbd>&nbsp;CSS3&nbsp;</kbd> <kbd>&nbsp;JavaScript&nbsp;</kbd> <a href="LICENSE"><kbd>&nbsp;License&nbsp;</kbd></a>
 </p>
 
+<p align="center">
+  <img src="assets/preview.png" alt="Preview of the portfolio hero section" width="820">
+</p>
+
 ---
 
 ## ✨ Features
