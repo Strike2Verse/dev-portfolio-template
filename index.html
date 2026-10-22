@@ -6,9 +6,48 @@
     <title>John Doe | Software &amp; Web Engineer</title>
     <meta name="description" content="Portfolio of John Doe, a software engineer who enjoys building practical projects.">
     <meta name="theme-color" content="#07080f">
+    <meta property="og:title" content="John Doe | Software &amp; Web Engineer">
+    <meta property="og:description" content="Portfolio of John Doe: software projects and skills.">
+
+    <script>document.documentElement.classList.add("js");</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-orb bg-orb--1" aria-hidden="true"></div>
+    <div class="bg-orb bg-orb--2" aria-hidden="true"></div>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo" aria-label="John Doe — home">
+                <span class="logo-ob">JD</span><span class="logo-underscore">_</span><span class="logo-arrow">&gt;</span><span class="logo-arrow logo-arrow--accent">&gt;</span>
+            </a>
+
+            <nav class="nav-menu" aria-label="Primary">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a data-link="github" target="_blank" rel="noopener noreferrer" class="nav-cta-btn" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
     <main id="main">
     </main>
     <script src="script.js" defer></script>
