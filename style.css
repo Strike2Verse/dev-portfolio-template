@@ -1035,3 +1035,8 @@ button { font: inherit; color: inherit; }
 .contact-card[data-link="linkedin"]:hover { border-color: rgba(10,102,194,.7); background: rgba(10,102,194,.10); }
 .contact-card[data-link="linkedin"]:hover .contact-card-icon { background: linear-gradient(135deg, #0a66c2, #2f8be6); box-shadow: 0 8px 20px -6px rgba(10,102,194,.9); }
 .contact-card[data-link="github"]:hover .contact-card-icon { background: linear-gradient(135deg, #3a3a52, #14141f); box-shadow: 0 8px 20px -6px rgba(255,255,255,.4); }
+
+@media (prefers-reduced-motion: reduce) {
+    .email-btn { animation: none; }
+    .btn::before, .nav-cta-btn::before, .email-btn::before { display: none; }
+}
