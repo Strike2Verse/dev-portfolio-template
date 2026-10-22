@@ -35,3 +35,33 @@ const PROFILE = {
         }
     }
 };
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const mobileQuery = window.matchMedia("(max-width: 960px)");
+    const isMobile = () => mobileQuery.matches;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canHover = window.matchMedia("(hover: hover)").matches;
+
+    /* ---------------- 0. Links from PROFILE ---------------- */
+    PROFILE.links.email = `mailto:${PROFILE.email}`;
+
+    document.querySelectorAll("[data-link]").forEach(el => {
+        const url = el.dataset.link.split(":").reduce((obj, key) => (obj ? obj[key] : undefined), PROFILE.links);
+        if (typeof url === "string" && url.trim()) {
+            el.href = url;
+        } else {
+            el.href = "#";
+            el.classList.add("is-pending");
+            el.setAttribute("aria-disabled", "true");
+            el.title = "Link coming soon";
+            el.removeAttribute("target");
+            el.addEventListener("click", e => {
+                e.preventDefault();
+                showToast("Link coming soon");
+            });
+        }
+    });
+    document.querySelectorAll("[data-email]").forEach(el => { el.textContent = PROFILE.email; });
+
+});
