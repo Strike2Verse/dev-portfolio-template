@@ -1,1 +1,60 @@
-/* Portfolio styles */
+/* ==========================================================================
+   Portfolio
+   Dark "deep space" theme · glass surfaces · violet/cyan accents
+   ========================================================================== */
+
+:root {
+    --bg: #07080f;
+    --surface-hover: rgba(22, 26, 46, 0.82);
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.14);
+
+    --violet: #8b5cf6;
+    --violet-2: #a78bfa;
+    --violet-glow: rgba(139, 92, 246, 0.35);
+    --cyan: #22d3ee;
+    --emerald: #34d399;
+    --amber: #fbbf24;
+
+    --text: #eef1f8;
+    --muted: #9aa4b8;
+    --subtle: #5f6b82;
+
+    --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --radius: 20px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --nav-h: 64px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font: inherit; color: inherit; }
+::selection { background: rgba(139, 92, 246, 0.45); color: #fff; }
+
+:focus-visible {
+    outline: 2px solid var(--violet-2);
+    outline-offset: 3px;
+    border-radius: 8px;
+}
