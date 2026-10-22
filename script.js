@@ -299,5 +299,53 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.stroke();
             ctx.restore();
         }
+
+        const img = new Image();
+        let imgReady = false;
+        img.onload = () => { imgReady = img.naturalWidth > 0; if (reduceMotion) frame(); };
+        img.src = "assets/planet.webp";
+        const pw = 1100, ph = pw * (1024 / 1536);
+
+        let visible = true, raf = null;
+
+        function frame() {
+            ctx.clearRect(0, 0, SIZE, SIZE);
+            drawDust(false);
+            rings.forEach(r => { drawRingHalf(r, true); drawMoons(r, true); });
+            if (imgReady) ctx.drawImage(img, CX - pw / 2, CY - ph / 2, pw, ph);
+            else drawFallbackPlanet();
+            rings.forEach(r => {
+                drawRingHalf(r, false); drawMoons(r, false);
+                if (!reduceMotion) r.angle += r.speed;
+            });
+            drawDust(true);
+        }
+
+        function loop() {
+            if (!visible) { raf = null; return; }
+            frame();
+            raf = requestAnimationFrame(loop);
+        }
+
+        if (reduceMotion) { frame(); return; }
+
+        let heroInView = true;
+        const update = () => {
+            visible = heroInView && !document.hidden;
+            if (visible) {
+                if (!raf) raf = requestAnimationFrame(loop);
+            } else {
+                if (raf) {
+                    cancelAnimationFrame(raf);
+                    raf = null;
+                }
+            }
+        };
+        if (hero && "IntersectionObserver" in window) {
+            new IntersectionObserver(([entry]) => { heroInView = entry.isIntersecting; update(); }, { threshold: 0 }).observe(hero);
+        }
+        document.addEventListener("visibilitychange", update);
+
+        raf = requestAnimationFrame(loop);
     })();
 });
