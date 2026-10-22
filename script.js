@@ -115,6 +115,41 @@ document.addEventListener("DOMContentLoaded", () => {
     backdrop?.addEventListener("click", () => setMenu(false));
     document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
 
+    /* ---------------- 1b. Smooth scroll for anchor buttons/links ---------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", e => {
+            const href = anchor.getAttribute("href");
+            if (!href || href === "#") return;
+
+            const target = href === "#home" ? document.body : document.querySelector(href);
+            if (!target) return;
+
+            e.preventDefault();
+
+            if (menu && menu.classList.contains("open")) {
+                setMenu(false);
+            }
+
+            requestAnimationFrame(() => {
+                if (href === "#home") {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: reduceMotion ? "auto" : "smooth"
+                    });
+                } else {
+                    target.scrollIntoView({
+                        behavior: reduceMotion ? "auto" : "smooth",
+                        block: "start"
+                    });
+                }
+
+                if (history.pushState) {
+                    history.pushState(null, "", href);
+                }
+            });
+        });
+    });
+
     /* ---------------- 5. Typewriter ---------------- */
     const typingEl = document.getElementById("typing-text");
     const phrases = [
