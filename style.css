@@ -357,6 +357,11 @@ button { font: inherit; color: inherit; }
     font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 500; color: var(--muted);
     margin-bottom: 22px; min-height: 1.6em;
 }
+.typed-wrap { color: var(--text); white-space: nowrap; }
+#typing-text {
+    background: linear-gradient(90deg, var(--cyan), var(--violet-2));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
 .hero-bio { font-size: 1.07rem; color: var(--muted); max-width: 540px; margin-bottom: 34px; line-height: 1.75; }
 .hero-bio strong { color: var(--text); font-weight: 600; }
 
