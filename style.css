@@ -576,13 +576,6 @@ button { font: inherit; color: inherit; }
 .visual-carelink { background: radial-gradient(circle at 80% 0%, rgba(16,185,129,.22), transparent 60%), linear-gradient(135deg, rgba(56,189,248,.18), rgba(10,12,22,.4)); }
 .visual-javalab { background: radial-gradient(circle at 80% 0%, rgba(249,115,22,.2), transparent 60%), linear-gradient(135deg, rgba(139,92,246,.18), rgba(10,12,22,.4)); }
 
-.visual-top { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
-.preview-tag { font-family: var(--font-mono); font-size: .72rem; color: var(--text); display: inline-flex; gap: 6px; align-items: center; opacity: .85; }
-.status-live {
-    font-family: var(--font-mono); font-size: .7rem; font-weight: 600; color: var(--emerald);
-    padding: 3px 9px; border-radius: 999px; background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.25);
-}
-
 /* Mock terminal (featured) */
 .mock-window {
     position: relative; z-index: 2; border-radius: 14px; overflow: hidden;
@@ -722,21 +715,31 @@ button { font: inherit; color: inherit; }
 @keyframes pulseGoal { 0%, 100% { transform: scale(1); opacity: .8; } 50% { transform: scale(1.15); opacity: 1; } }
 @keyframes beamPulse { 0%, 100% { opacity: .7; } 50% { opacity: 1; } }
 
-/* CareLink Pulse */
-.carelink-demo { position: relative; z-index: 2; height: 90px; margin-top: 15px; display: flex; flex-direction: column; justify-content: center; padding: 12px; border-radius: 8px; background: rgba(0,0,0,.35); border: 1px solid rgba(16,185,129,.25); }
-.carelink-ecg { display: flex; align-items: center; gap: 4px; height: 32px; }
-.carelink-ecg span { flex: 1; height: 2px; background: rgba(16,185,129,.35); }
-.carelink-ecg b { font-family: var(--font-mono); font-size: .85rem; color: #10b981; text-shadow: 0 0 10px rgba(16,185,129,.8); animation: ecgBeat 1.4s infinite; }
-.carelink-badges { display: flex; gap: 6px; margin-top: 8px; }
-.carelink-pill { font-family: var(--font-mono); font-size: .65rem; color: var(--text); background: rgba(255,255,255,.06); padding: 2px 7px; border-radius: 4px; border: 1px solid var(--border); }
-@keyframes ecgBeat { 0%, 100% { opacity: .7; } 50% { opacity: 1; transform: scale(1.08); } }
+/* Heartbeat monitor */
+.visual-carelink { padding: 0; justify-content: center; }
+.pulse { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 6px; }
+.pulse-read { display: flex; align-items: baseline; gap: 6px; padding: 0 22px; font-family: var(--font-mono); }
+.pulse-read b { font-family: var(--font-display); font-size: 2rem; line-height: 1; color: #6ee7b7; }
+.pulse-read span { font-size: .72rem; letter-spacing: .12em; color: var(--subtle); }
+.pulse svg { display: block; width: 100%; height: 80px; }
+.pulse polyline { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.pulse-base { stroke: rgba(52,211,153,.28); }
+.pulse-beat { stroke: #34d399; filter: drop-shadow(0 0 5px rgba(52,211,153,.8)); stroke-dasharray: 22 78; animation: ecgSweep 2.6s linear infinite; }
+@keyframes ecgSweep { from { stroke-dashoffset: 22; } to { stroke-dashoffset: -78; } }
 
-/* Java Lab Preview */
-.javalab-demo { position: relative; z-index: 2; height: 90px; margin-top: 15px; display: flex; flex-direction: column; justify-content: center; padding: 12px 14px; border-radius: 8px; background: rgba(0,0,0,.35); border: 1px solid rgba(249,115,22,.3); }
-.javalab-row { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: .75rem; color: #fb923c; margin-bottom: 8px; }
-.javalab-bar { height: 6px; width: 100%; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
-.javalab-bar-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #f97316, #a855f7); border-radius: 3px; }
-.javalab-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: .68rem; color: var(--muted); margin-top: 6px; }
+/* Step tracker */
+.visual-javalab { align-items: center; justify-content: center; gap: 18px; }
+.steps { position: relative; z-index: 2; display: flex; align-items: center; }
+.step {
+    position: relative; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+    font-family: var(--font-mono); font-size: .76rem; color: #fdba74;
+    background: rgba(249,115,22,.18); border: 1px solid rgba(249,115,22,.5);
+}
+.step + .step { margin-left: 32px; }
+.step + .step::before { content: ""; position: absolute; right: 100%; top: 50%; width: 32px; height: 2px; background: rgba(249,115,22,.55); transform: translateY(-50%); }
+.step.now { color: #fff; border-color: transparent; background: linear-gradient(135deg, #f97316, #a855f7); box-shadow: 0 0 18px rgba(249,115,22,.55); }
+.steps-label { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: var(--font-mono); font-size: .72rem; color: var(--muted); }
+.steps-label b { font-size: .8rem; color: #fdba74; }
 
 .project-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
 .project-card--featured .project-body { padding: 32px; }
