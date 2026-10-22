@@ -455,6 +455,15 @@ button { font: inherit; color: inherit; }
 .about-main-card h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 16px; }
 .about-main-card p { color: var(--muted); margin-bottom: 16px; }
 
+.philosophy-points { display: flex; flex-direction: column; gap: 16px; margin-top: auto; padding-top: 26px; border-top: 1px solid var(--border); }
+.philosophy-points li { display: flex; gap: 14px; align-items: flex-start; }
+.point-icon {
+    width: 34px; height: 34px; flex-shrink: 0; display: grid; place-items: center; border-radius: 10px;
+    background: rgba(52, 211, 153, .1); border: 1px solid rgba(52, 211, 153, .25); color: var(--emerald); font-size: .85rem;
+}
+.philosophy-points strong { display: block; font-size: .96rem; font-weight: 600; }
+.philosophy-points span { font-size: .9rem; color: var(--muted); }
+
 /* ---------- Responsive: hero ---------- */
 @media (max-width: 960px) {
     .hero { padding: 110px 0 70px; }
