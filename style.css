@@ -639,12 +639,19 @@ button { font: inherit; color: inherit; }
     background: var(--amber); padding: 4px 10px; border-radius: 6px; box-shadow: 0 6px 18px -4px rgba(251,191,36,.5);
 }
 
-/* Sentiment bars */
-.sentiment-bars { position: relative; z-index: 2; margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
-.sentiment-bars div { display: grid; grid-template-columns: 32px 1fr; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: .7rem; color: var(--muted); }
-.sentiment-bars b { display: block; height: 8px; border-radius: 4px; width: var(--w); background: linear-gradient(90deg, var(--emerald), var(--cyan)); }
-.sentiment-bars div:nth-child(2) b { background: linear-gradient(90deg, #94a3b8, #cbd5e1); }
-.sentiment-bars div:nth-child(3) b { background: linear-gradient(90deg, #f87171, #fb7185); }
+/* Donut chart */
+.visual-nlp { align-items: center; justify-content: center; }
+.donut-wrap { position: relative; z-index: 2; display: flex; align-items: center; gap: 22px; }
+.donut {
+    position: relative; width: 104px; height: 104px; border-radius: 50%; display: grid; place-items: center;
+    background: conic-gradient(#34d399 0 72%, #94a3b8 72% 90%, #f87171 90% 100%);
+    box-shadow: 0 0 30px rgba(52,211,153,.2);
+}
+.donut::before { content: ""; position: absolute; inset: 14px; border-radius: 50%; background: #0d1220; }
+.donut b { position: relative; font-family: var(--font-display); font-size: 1.25rem; }
+.donut-legend { display: flex; flex-direction: column; gap: 8px; font-family: var(--font-mono); font-size: .74rem; color: var(--muted); }
+.donut-legend li { display: flex; align-items: center; gap: 8px; }
+.donut-legend i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
 
 /* Mini orbit */
 .orbit-mini { position: relative; z-index: 2; width: 110px; height: 110px; margin: 10px auto 0; }
@@ -675,14 +682,25 @@ button { font: inherit; color: inherit; }
 .desk-dock i:nth-child(4) { background: linear-gradient(135deg, #34d399, #10b981); }
 @keyframes catBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-/* Refract laser preview */
-.refract-demo { position: relative; z-index: 2; height: 90px; margin-top: 15px; border-radius: 8px; background: rgba(0,0,0,.35); border: 1px solid rgba(6,182,212,.3); overflow: hidden; }
-.refract-beam { position: absolute; left: 10px; top: 21px; width: calc(50% - 10px); height: 2px; background: #06b6d4; box-shadow: 0 0 10px #06b6d4; }
-.refract-mirror { position: absolute; left: calc(50% - 1.5px); top: 9px; width: 3px; height: 26px; background: #fff; transform: rotate(45deg); box-shadow: 0 0 8px rgba(255,255,255,.8); }
-.refract-reflected { position: absolute; left: calc(50% - 1px); top: 22px; width: 2px; height: 36px; background: #ec4899; box-shadow: 0 0 10px #ec4899; }
-.refract-goal { position: absolute; left: calc(50% - 12px); top: 58px; width: 24px; height: 24px; border-radius: 50%; border: 2px dashed #10b981; display: flex; align-items: center; justify-content: center; animation: pulseGoal 2s infinite; }
-.refract-goal::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+/* Blueprint lab */
+.visual-refract { padding: 0; }
+.lab {
+    position: relative; z-index: 2; flex: 1;
+    background-image:
+        linear-gradient(rgba(34,211,238,.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,211,238,.10) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+.lab-label { position: absolute; top: 12px; font-family: var(--font-mono); font-size: .68rem; color: rgba(125,211,252,.8); }
+.lab-label--a { left: 14px; }
+.lab-label--b { right: 14px; }
+.refract-beam { position: absolute; left: 0; top: 62%; width: 50%; height: 2px; background: linear-gradient(90deg, transparent, #22d3ee); box-shadow: 0 0 12px #22d3ee; animation: beamPulse 2.4s ease-in-out infinite; }
+.refract-mirror { position: absolute; left: calc(50% - 1.5px); top: calc(62% - 22px); width: 3px; height: 44px; background: #fff; border-radius: 2px; transform: rotate(45deg); box-shadow: 0 0 10px rgba(255,255,255,.6); }
+.refract-reflected { position: absolute; left: calc(50% - 1px); top: 28%; width: 2px; height: 34%; background: linear-gradient(0deg, #f472b6, transparent); box-shadow: 0 0 10px #f472b6; animation: beamPulse 2.4s ease-in-out infinite; }
+.refract-goal { position: absolute; left: calc(50% - 12px); top: calc(28% - 22px); width: 24px; height: 24px; border: 2px dashed #34d399; border-radius: 50%; animation: pulseGoal 2s ease-in-out infinite; }
+.refract-goal::after { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: #34d399; }
 @keyframes pulseGoal { 0%, 100% { transform: scale(1); opacity: .8; } 50% { transform: scale(1.15); opacity: 1; } }
+@keyframes beamPulse { 0%, 100% { opacity: .7; } 50% { opacity: 1; } }
 
 /* CareLink Pulse */
 .carelink-demo { position: relative; z-index: 2; height: 90px; margin-top: 15px; display: flex; flex-direction: column; justify-content: center; padding: 12px; border-radius: 8px; background: rgba(0,0,0,.35); border: 1px solid rgba(16,185,129,.25); }
