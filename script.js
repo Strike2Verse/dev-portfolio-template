@@ -151,6 +151,16 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener("visibilitychange", syncTyping);
     }
 
+    /* ---------------- 6. Marquee (clone for seamless loop) ---------------- */
+    const track = document.getElementById("marqueeTrack");
+    if (track) {
+        [...track.children].forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.setAttribute("aria-hidden", "true");
+            track.appendChild(clone);
+        });
+    }
+
     /* ---------------- 8. Card spotlight + subtle tilt (desktop) ---------------- */
     if (canHover && !reduceMotion) {
         document.querySelectorAll(".spotlight").forEach(card => {
