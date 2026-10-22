@@ -967,3 +967,16 @@ button { font: inherit; color: inherit; }
     .js .reveal { opacity: 1; transform: none; }
     .marquee-track { animation: none; }
 }
+
+/* ==========================================================================
+   Button polish: sheen sweep, brand-colour hovers, glowing gradient borders
+   ========================================================================== */
+.btn, .nav-cta-btn, .email-btn, .social-icon, .contact-card { position: relative; overflow: hidden; isolation: isolate; }
+
+/* light sweep across buttons on hover */
+.btn::before, .nav-cta-btn::before, .email-btn::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
+    transform: translateX(-120%); transition: transform .7s var(--ease);
+}
+.btn:hover::before, .nav-cta-btn:hover::before, .email-btn:hover::before { transform: translateX(120%); }
