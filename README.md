@@ -17,12 +17,15 @@
 
 ## ✨ Features
 
-- Sticky navbar with a mobile slide-in menu
-- Hero section with a typing animation and an animated canvas planet
-- About, Skills, Projects and Certifications sections
-- Scroll progress bar and reveal-on-scroll animations
-- Cursor-spotlight card effects
-- Responsive and accessible (ARIA labels, skip link, reduced-motion support)
+- Floating glass navbar with a slide-in mobile menu
+- Hero with a typewriter headline and an animated canvas planet with orbiting rings
+- Scrolling tech marquee
+- About, Skills, Projects, Certifications and Contact sections
+- Filterable project cards, each with its own preview design
+- Scroll progress bar, smooth anchor scrolling and reveal-on-scroll animations
+- Cursor-spotlight card effects and polished button hovers
+- Responsive down to small phones
+- Accessible: skip link, ARIA labels, keyboard-friendly menu and reduced-motion support
 
 ## 🛠️ Tech Stack
 
@@ -31,6 +34,17 @@
 | Markup | HTML5 |
 | Styling | CSS3 (custom properties, grid, flexbox, keyframes) |
 | Behaviour | Vanilla JavaScript (Canvas API, IntersectionObserver) |
+
+## 📁 Project Structure
+
+```
+├── index.html       # Page markup and all sections
+├── style.css        # Design tokens, layout, components, responsive rules
+├── script.js        # PROFILE config, menu, scroll effects, typing, canvas planet
+└── assets/
+    ├── planet.webp  # Planet image used in the hero
+    └── preview.png  # Screenshot used in this README
+```
 
 ## 🚀 Getting Started
 
