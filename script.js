@@ -160,6 +160,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.style.setProperty("--my", `${e.clientY - r.top}px`);
             });
         });
+
+        const heroScene = document.getElementById("spaceScene");
+        if (heroScene && !isMobile()) {
+            let pending = false;
+            document.addEventListener("pointermove", e => {
+                if (pending || window.scrollY > 80) return;
+                pending = true;
+                requestAnimationFrame(() => {
+                    const x = (window.innerWidth / 2 - e.clientX) / 60;
+                    const y = (window.innerHeight / 2 - e.clientY) / 60;
+                    heroScene.style.transform = `translate3d(${x}px, ${y}px, 0) rotateX(${-y * 0.25}deg) rotateY(${x * 0.25}deg)`;
+                    pending = false;
+                });
+            });
+        }
     }
 
     /* ---------------- 9. Planet + rings canvas ---------------- */
