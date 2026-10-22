@@ -189,5 +189,50 @@ document.addEventListener("DOMContentLoaded", () => {
             const ex = ring.rx * Math.cos(ang), ey = ring.ry * Math.sin(ang);
             return { x: CX + ex * Math.cos(t) - ey * Math.sin(t), y: CY + ex * Math.sin(t) + ey * Math.cos(t), behind: ey < 0 };
         };
+
+        function drawDust(front) {
+            ctx.save();
+            ctx.shadowColor = "rgba(139,92,246,0.65)";
+            dust.forEach(p => {
+                if (p.front !== front) return;
+                if (!reduceMotion) {
+                    p.tp += p.ts; p.x += p.dx; p.y += p.dy;
+                    if (p.x < 0) p.x = SIZE; if (p.x > SIZE) p.x = 0;
+                    if (p.y < 0) p.y = SIZE; if (p.y > SIZE) p.y = 0;
+                }
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(220,200,255,${Math.max(0.05, p.a + Math.sin(p.tp) * 0.15)})`;
+                ctx.shadowBlur = small() ? 0 : p.r * 2.5;
+                ctx.fill();
+            });
+            ctx.restore();
+        }
+
+        function drawRingHalf(ring, behind) {
+            const segs = [];
+            const n = steps();
+            let seg = null;
+            for (let i = 0; i <= n; i++) {
+                const pt = project(ring, (i / n) * Math.PI * 2);
+                if (pt.behind !== behind) { if (seg && seg.length > 1) segs.push(seg); seg = null; continue; }
+                (seg ||= []).push(pt);
+            }
+            if (seg && seg.length > 1) segs.push(seg);
+            if (!segs.length) return;
+
+            ctx.save();
+            ctx.shadowColor = ring.c + "0.45)";
+            [[ring.c + "0.78)", ring.lw * 2.2, small() ? 0 : 2], [ring.c + "0.38)", ring.lw * 0.85, 0]].forEach(([col, lw, blur]) => {
+                ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.shadowBlur = blur;
+                segs.forEach(s => {
+                    ctx.beginPath();
+                    ctx.moveTo(s[0].x, s[0].y);
+                    for (let i = 1; i < s.length; i++) ctx.lineTo(s[i].x, s[i].y);
+                    ctx.stroke();
+                });
+            });
+            ctx.restore();
+        }
     })();
 });
