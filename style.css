@@ -95,3 +95,39 @@ button { font: inherit; color: inherit; }
     background: linear-gradient(90deg, var(--violet), var(--cyan));
     transform-origin: 0 50%; transform: scaleX(0);
 }
+
+/* ---------- Layout ---------- */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+/* scroll-margin-top = navbar bottom (80px) + 24px gap - section padding, so the
+   heading lands just under the navbar instead of after a big empty gap */
+.section { padding: 110px 0; position: relative; scroll-margin-top: -6px; }
+
+.section-header { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+
+.section-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: .76rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+    padding: 6px 14px 6px 6px; border-radius: 999px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    margin-bottom: 18px;
+}
+.tag-num {
+    font-weight: 600; color: var(--cyan);
+    background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.25);
+    padding: 1px 8px; border-radius: 999px; letter-spacing: .04em;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.6vw, 3rem);
+    font-weight: 700; line-height: 1.12; letter-spacing: -0.03em;
+    margin-bottom: 14px;
+}
+.section-subtitle { color: var(--muted); font-size: 1.05rem; }
+
+.gradient-text {
+    background: linear-gradient(120deg, #fff 10%, var(--violet-2) 50%, var(--cyan) 95%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+}
