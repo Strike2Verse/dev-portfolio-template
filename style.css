@@ -917,6 +917,8 @@ button { font: inherit; color: inherit; }
     .project-card--featured .project-body { padding: 24px; }
     .projects-grid, .skills-grid, .cert-grid { grid-template-columns: 1fr; }
     .project-card--featured { grid-column: span 1; }
+
+    .contact-channels { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -942,6 +944,9 @@ button { font: inherit; color: inherit; }
     .filter-bar { border-radius: 16px; justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
     .filter-bar::-webkit-scrollbar { display: none; }
     .filter-btn { white-space: nowrap; }
+
+    .contact-box { padding: 48px 20px; border-radius: 24px; }
+    .footer-content { flex-direction: column; text-align: center; }
 }
 
 @media (hover: none) {
