@@ -342,3 +342,20 @@ button { font: inherit; color: inherit; }
     border: 2px solid var(--emerald); animation: ping 1.8s var(--ease) infinite;
 }
 @keyframes ping { from { transform: scale(.6); opacity: .9; } to { transform: scale(1.8); opacity: 0; } }
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6.4vw, 5rem);
+    font-weight: 700; line-height: 1.02; letter-spacing: -0.045em; margin-bottom: 20px;
+}
+.hero-hello {
+    display: block; font-size: .4em; font-weight: 500; letter-spacing: -0.01em;
+    color: var(--muted); margin-bottom: 10px; font-family: var(--font-mono);
+}
+.hero-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 500; color: var(--muted);
+    margin-bottom: 22px; min-height: 1.6em;
+}
+.hero-bio { font-size: 1.07rem; color: var(--muted); max-width: 540px; margin-bottom: 34px; line-height: 1.75; }
+.hero-bio strong { color: var(--text); font-weight: 600; }
