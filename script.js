@@ -79,11 +79,22 @@ document.addEventListener("DOMContentLoaded", () => {
         toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
     }
 
-    /* ---------------- 2. Navbar state ---------------- */
+    /* ---------------- 2. Scroll: progress bar + navbar state ---------------- */
+    const progress = document.getElementById("scrollProgress");
     const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
+    let scrollTicking = false;
+
+    function onScroll() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        if (progress) progress.style.transform = `scaleX(${ratio})`;
         navbar?.classList.toggle("is-scrolled", window.scrollY > 24);
+        scrollTicking = false;
+    }
+    window.addEventListener("scroll", () => {
+        if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(onScroll); }
     }, { passive: true });
+    onScroll();
 
     /* ---------------- 3. Active nav link ---------------- */
     const navLinks = document.querySelectorAll(".nav-link, .mobile-link");
@@ -114,6 +125,73 @@ document.addEventListener("DOMContentLoaded", () => {
     closeBtn?.addEventListener("click", () => setMenu(false));
     backdrop?.addEventListener("click", () => setMenu(false));
     document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+    /* ---------------- 1b. Smooth scroll for anchor buttons/links ---------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", e => {
+            const href = anchor.getAttribute("href");
+            if (!href || href === "#") return;
+
+            const target = href === "#home" ? document.body : document.querySelector(href);
+            if (!target) return;
+
+            e.preventDefault();
+
+            if (menu && menu.classList.contains("open")) {
+                setMenu(false);
+            }
+
+            requestAnimationFrame(() => {
+                if (href === "#home") {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: reduceMotion ? "auto" : "smooth"
+                    });
+                } else {
+                    target.scrollIntoView({
+                        behavior: reduceMotion ? "auto" : "smooth",
+                        block: "start"
+                    });
+                }
+
+                if (history.pushState) {
+                    history.pushState(null, "", href);
+                }
+            });
+        });
+    });
+
+    /* ---------------- 4. Reveal on scroll ---------------- */
+    // Once an element has faded in, drop the stagger delay and the slow reveal
+    // transition so hover effects respond instantly.
+    function finishReveal(el) {
+        el.classList.add("in");
+        el.addEventListener("transitionend", function onEnd(e) {
+            if (e.target !== el || e.propertyName !== "opacity") return;
+            el.removeEventListener("transitionend", onEnd);
+            el.style.transitionDelay = "";
+            el.classList.add("revealed");
+        });
+    }
+
+    const revealEls = document.querySelectorAll(".reveal");
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+        revealEls.forEach(el => el.classList.add("in", "revealed"));
+    } else {
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                // stagger siblings that appear together
+                const siblings = [...el.parentElement.children].filter(c => c.classList.contains("reveal"));
+                const idx = Math.max(0, siblings.indexOf(el));
+                el.style.transitionDelay = `${Math.min(idx, 6) * 70}ms`;
+                finishReveal(el);
+                obs.unobserve(el);
+            });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+        revealEls.forEach(el => revealObserver.observe(el));
+    }
 
     /* ---------------- 5. Typewriter ---------------- */
     const typingEl = document.getElementById("typing-text");
