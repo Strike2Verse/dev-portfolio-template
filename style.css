@@ -382,6 +382,56 @@ button { font: inherit; color: inherit; }
 }
 .social-icon:hover { color: #fff; border-color: rgba(139,92,246,.5); background: rgba(139,92,246,.14); transform: translateY(-2px); }
 
+/* Planet scene */
+.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; z-index: 1; }
+.space-scene {
+    width: min(46vw, 600px); aspect-ratio: 1 / 1; position: relative;
+    transition: transform .4s var(--ease); will-change: transform;
+}
+.space-box { position: absolute; inset: 0; animation: floatPlanet 7s ease-in-out infinite; }
+.space-box::before {
+    content: ""; position: absolute; inset: 18%; border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,.4) 0%, rgba(34,211,238,.1) 50%, transparent 70%);
+    animation: corona 5s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+#rings-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    transform: translateZ(0); will-change: transform;
+}
+@keyframes floatPlanet { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes corona { from { transform: scale(.94); opacity: .7; } to { transform: scale(1.06); opacity: 1; } }
+
+.orbit-icon {
+    position: absolute; z-index: 3;
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: rgba(14, 16, 30, 0.92); border: 1px solid var(--border-strong);
+    box-shadow: 0 10px 25px rgba(0,0,0,.6), 0 0 16px rgba(139, 92, 246, 0.2);
+    font-size: 1.15rem; color: var(--text);
+    animation: iconFloat 6s ease-in-out infinite;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.orbit-icon:hover {
+    transform: scale(1.18) !important;
+    border-color: rgba(139, 92, 246, 0.65);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.55);
+}
+.orbit-icon--1 { top: 10%; left: 8%; animation-delay: 0s; }
+.orbit-icon--1 i { color: var(--violet-2); }
+.orbit-icon--2 { top: 12%; right: 8%; animation-delay: -1s; }
+.orbit-icon--2 i { color: #facc15; }
+.orbit-icon--3 { top: 48%; right: -2%; animation-delay: -2s; }
+.orbit-icon--3 i { color: #fb923c; }
+.orbit-icon--4 { bottom: 16%; right: 6%; animation-delay: -3s; }
+.orbit-icon--4 i { color: var(--cyan); }
+.orbit-icon--5 { bottom: 10%; left: 14%; animation-delay: -4s; }
+.orbit-icon--5 i { color: #60a5fa; }
+.orbit-icon--6 { top: 50%; left: -2%; animation-delay: -5s; }
+.orbit-icon--6 i { color: #34d399; }
+@keyframes iconFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
 .scroll-cue { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); opacity: .6; transition: opacity .2s; }
 .scroll-cue:hover { opacity: 1; }
 .scroll-mouse { display: block; width: 24px; height: 38px; border: 2px solid var(--muted); border-radius: 14px; position: relative; }
@@ -396,6 +446,7 @@ button { font: inherit; color: inherit; }
     .hero { padding: 110px 0 70px; }
     .hero-container { grid-template-columns: 1fr; gap: 20px; }
     .hero-content { max-width: 640px; }
+    .space-scene { width: min(86vw, 480px); }
     .scroll-cue { display: none; }
 }
 
@@ -410,4 +461,5 @@ button { font: inherit; color: inherit; }
     .hero-buttons { flex-direction: column; max-width: 100%; }
     .hero-buttons .btn { width: 100%; }
     .hero-meta { max-width: 100%; }
+    .space-scene { width: min(92vw, 360px); }
 }
