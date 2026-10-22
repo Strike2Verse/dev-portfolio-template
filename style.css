@@ -1027,3 +1027,11 @@ button { font: inherit; color: inherit; }
 .social-icon[data-link="github"]:hover   { background: linear-gradient(135deg, #2b2b3d, #12121c); border-color: rgba(255,255,255,.55); box-shadow: 0 10px 24px -8px rgba(255,255,255,.35); }
 .social-icon[data-link="linkedin"]:hover { background: linear-gradient(135deg, #0a66c2, #2f8be6); border-color: rgba(120,190,255,.7); box-shadow: 0 10px 24px -8px rgba(10,102,194,.8); }
 .social-icon[data-link="email"]:hover    { background: linear-gradient(135deg, #a855f7, #6366f1); border-color: rgba(255,255,255,.4); box-shadow: 0 10px 24px -8px rgba(139,92,246,.8); }
+
+/* Contact cards: icon fills with brand colour, card glows */
+.contact-card:hover { box-shadow: 0 14px 34px -12px rgba(139,92,246,.55); }
+.contact-card-icon { transition: background .3s var(--ease), color .3s var(--ease), transform .35s var(--ease), box-shadow .3s var(--ease); }
+.contact-card:hover .contact-card-icon { color: #fff; transform: rotate(-6deg) scale(1.08); }
+.contact-card[data-link="linkedin"]:hover { border-color: rgba(10,102,194,.7); background: rgba(10,102,194,.10); }
+.contact-card[data-link="linkedin"]:hover .contact-card-icon { background: linear-gradient(135deg, #0a66c2, #2f8be6); box-shadow: 0 8px 20px -6px rgba(10,102,194,.9); }
+.contact-card[data-link="github"]:hover .contact-card-icon { background: linear-gradient(135deg, #3a3a52, #14141f); box-shadow: 0 8px 20px -6px rgba(255,255,255,.4); }
