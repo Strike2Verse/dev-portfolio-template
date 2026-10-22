@@ -482,9 +482,16 @@ button { font: inherit; color: inherit; }
     .hero-content { max-width: 640px; }
     .space-scene { width: min(86vw, 480px); }
     .scroll-cue { display: none; }
+
+    .about-grid { grid-template-columns: 1fr; }
+    .section { padding: 88px 0; scroll-margin-top: 16px; }
 }
 
 @media (max-width: 640px) {
+    .container, .hero-container { padding: 0 16px; }
+    .section { padding: 72px 0; scroll-margin-top: 20px; }
+    .section-header { margin-bottom: 40px; }
+
     .hero { padding: 100px 0 56px; min-height: auto; }
     .status-group { flex-direction: column; align-items: stretch; gap: 8px; margin-bottom: 22px; }
     .status-pill { width: 100%; font-size: .78rem; padding: 8px 14px; border-radius: 16px; }
@@ -496,4 +503,11 @@ button { font: inherit; color: inherit; }
     .hero-buttons .btn { width: 100%; }
     .hero-meta { max-width: 100%; }
     .space-scene { width: min(92vw, 360px); }
+
+    .about-main-card { padding: 26px 20px; }
+    .focus-grid { grid-template-columns: 1fr; }
+}
+
+@media (hover: none) {
+    .card:hover, .focus-card:hover { transform: none; }
 }
