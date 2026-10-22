@@ -581,6 +581,98 @@ button { font: inherit; color: inherit; }
     padding: 3px 9px; border-radius: 999px; background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.25);
 }
 
+/* Mock terminal (featured) */
+.mock-window {
+    position: relative; z-index: 2; border-radius: 14px; overflow: hidden;
+    background: rgba(6, 8, 16, 0.85); border: 1px solid var(--border-strong);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 40px -10px rgba(34,211,238,.25);
+    transform: perspective(900px) rotateY(-6deg) rotateX(3deg);
+    transition: transform .5s var(--ease);
+}
+.project-card--featured:hover .mock-window { transform: perspective(900px) rotateY(0) rotateX(0); }
+.mock-bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,.04); border-bottom: 1px solid var(--border); }
+.dots { display: flex; gap: 6px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: #ef4444; }
+.dots i:nth-child(2) { background: #f59e0b; }
+.dots i:nth-child(3) { background: #10b981; }
+.mock-title { font-family: var(--font-mono); font-size: .72rem; color: var(--subtle); }
+.mock-body { padding: 18px 18px 20px; font-family: var(--font-mono); font-size: .8rem; line-height: 1.9; color: var(--text); }
+.mock-body p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c-dim { color: var(--subtle); }
+.c-ok { color: var(--emerald); }
+.c-accent { color: var(--cyan); }
+.mock-cursor span { display: inline-block; width: 8px; height: 14px; background: var(--violet-2); vertical-align: -2px; animation: blink 1s steps(2, start) infinite; }
+
+/* Dots & boxes mini-board */
+.dots-board {
+    position: relative; z-index: 2; margin: auto; margin-top: 22px;
+    width: 150px; height: 100px; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+}
+.dots-board i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.5); }
+.dots-board .ln { position: absolute; background: var(--violet-2); border-radius: 2px; box-shadow: 0 0 10px var(--violet); }
+.dots-board .h1 { left: 12.5%; top: 16.67%; width: 25%; height: 3px; margin-top: -1.5px; }
+.dots-board .h2 { left: 12.5%; top: 50%; width: 25%; height: 3px; margin-top: -1.5px; }
+.dots-board .v1 { left: 12.5%; top: 16.67%; height: 33.33%; width: 3px; margin-left: -1.5px; }
+.dots-board .v2 { left: 37.5%; top: 16.67%; height: 33.33%; width: 3px; margin-left: -1.5px; animation: draw 2.4s ease-in-out infinite; transform-origin: top; }
+.dots-board .box { position: absolute; left: 12.5%; top: 16.67%; width: 25%; height: 33.33%; background: rgba(139,92,246,.25); animation: fill 2.4s ease-in-out infinite; }
+@keyframes draw { 0%,20% { transform: scaleY(0); } 50%,100% { transform: scaleY(1); } }
+@keyframes fill { 0%,50% { opacity: 0; } 65%,100% { opacity: 1; } }
+
+/* Linux overlay demo */
+.overlay-demo { position: relative; z-index: 2; margin-top: 26px; padding: 14px; border-radius: 10px; background: rgba(0,0,0,.35); border: 1px dashed rgba(251,191,36,.35); }
+.ov-line { display: block; height: 7px; border-radius: 4px; background: rgba(255,255,255,.18); margin-bottom: 8px; width: 85%; }
+.ov-line.short { width: 55%; margin-bottom: 0; }
+.ov-pop {
+    position: absolute; right: 12px; bottom: -12px; font-family: var(--font-mono); font-size: .7rem; color: #111;
+    background: var(--amber); padding: 4px 10px; border-radius: 6px; box-shadow: 0 6px 18px -4px rgba(251,191,36,.5);
+}
+
+/* Sentiment bars */
+.sentiment-bars { position: relative; z-index: 2; margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+.sentiment-bars div { display: grid; grid-template-columns: 32px 1fr; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: .7rem; color: var(--muted); }
+.sentiment-bars b { display: block; height: 8px; border-radius: 4px; width: var(--w); background: linear-gradient(90deg, var(--emerald), var(--cyan)); }
+.sentiment-bars div:nth-child(2) b { background: linear-gradient(90deg, #94a3b8, #cbd5e1); }
+.sentiment-bars div:nth-child(3) b { background: linear-gradient(90deg, #f87171, #fb7185); }
+
+/* Mini orbit */
+.orbit-mini { position: relative; z-index: 2; width: 110px; height: 110px; margin: 10px auto 0; }
+.orbit-mini i { position: absolute; inset: 36%; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #e9ddff, var(--violet) 55%, #2a1466); box-shadow: 0 0 24px var(--violet-glow); }
+.orbit-mini span { position: absolute; inset: 0; border: 1.5px solid rgba(167,139,250,.5); border-radius: 50%; transform: rotateX(70deg) rotate(0); animation: spin 8s linear infinite; }
+.orbit-mini span:nth-child(2) { inset: 12%; border-color: rgba(34,211,238,.45); animation-duration: 5s; animation-direction: reverse; }
+@keyframes spin { to { transform: rotateX(70deg) rotate(360deg); } }
+
+/* Desk Cat preview */
+.cat-preview { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 95px; margin-top: 10px; }
+.cat-avatar { font-size: 2.8rem; filter: drop-shadow(0 6px 16px rgba(168,85,247,.5)); animation: catBounce 2.4s ease-in-out infinite; }
+.cat-taskbar { width: 85%; height: 3px; background: linear-gradient(90deg, transparent, rgba(168,85,247,.7), transparent); margin-top: 8px; border-radius: 2px; }
+@keyframes catBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+/* Refract laser preview */
+.refract-demo { position: relative; z-index: 2; height: 90px; margin-top: 15px; border-radius: 8px; background: rgba(0,0,0,.35); border: 1px solid rgba(6,182,212,.3); overflow: hidden; }
+.refract-beam { position: absolute; left: 10px; top: 21px; width: calc(50% - 10px); height: 2px; background: #06b6d4; box-shadow: 0 0 10px #06b6d4; }
+.refract-mirror { position: absolute; left: calc(50% - 1.5px); top: 9px; width: 3px; height: 26px; background: #fff; transform: rotate(45deg); box-shadow: 0 0 8px rgba(255,255,255,.8); }
+.refract-reflected { position: absolute; left: calc(50% - 1px); top: 22px; width: 2px; height: 36px; background: #ec4899; box-shadow: 0 0 10px #ec4899; }
+.refract-goal { position: absolute; left: calc(50% - 12px); top: 58px; width: 24px; height: 24px; border-radius: 50%; border: 2px dashed #10b981; display: flex; align-items: center; justify-content: center; animation: pulseGoal 2s infinite; }
+.refract-goal::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+@keyframes pulseGoal { 0%, 100% { transform: scale(1); opacity: .8; } 50% { transform: scale(1.15); opacity: 1; } }
+
+/* CareLink Pulse */
+.carelink-demo { position: relative; z-index: 2; height: 90px; margin-top: 15px; display: flex; flex-direction: column; justify-content: center; padding: 12px; border-radius: 8px; background: rgba(0,0,0,.35); border: 1px solid rgba(16,185,129,.25); }
+.carelink-ecg { display: flex; align-items: center; gap: 4px; height: 32px; }
+.carelink-ecg span { flex: 1; height: 2px; background: rgba(16,185,129,.35); }
+.carelink-ecg b { font-family: var(--font-mono); font-size: .85rem; color: #10b981; text-shadow: 0 0 10px rgba(16,185,129,.8); animation: ecgBeat 1.4s infinite; }
+.carelink-badges { display: flex; gap: 6px; margin-top: 8px; }
+.carelink-pill { font-family: var(--font-mono); font-size: .65rem; color: var(--text); background: rgba(255,255,255,.06); padding: 2px 7px; border-radius: 4px; border: 1px solid var(--border); }
+@keyframes ecgBeat { 0%, 100% { opacity: .7; } 50% { opacity: 1; transform: scale(1.08); } }
+
+/* Java Lab Preview */
+.javalab-demo { position: relative; z-index: 2; height: 90px; margin-top: 15px; display: flex; flex-direction: column; justify-content: center; padding: 12px 14px; border-radius: 8px; background: rgba(0,0,0,.35); border: 1px solid rgba(249,115,22,.3); }
+.javalab-row { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: .75rem; color: #fb923c; margin-bottom: 8px; }
+.javalab-bar { height: 6px; width: 100%; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
+.javalab-bar-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #f97316, #a855f7); border-radius: 3px; }
+.javalab-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: .68rem; color: var(--muted); margin-top: 6px; }
+
 /* ---------- Responsive: hero ---------- */
 @media (max-width: 960px) {
     .hero { padding: 110px 0 70px; }
