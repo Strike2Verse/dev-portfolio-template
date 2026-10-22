@@ -381,3 +381,23 @@ button { font: inherit; color: inherit; }
     background: var(--muted); border-radius: 2px; animation: wheel 1.8s ease-in-out infinite;
 }
 @keyframes wheel { 0% { opacity: 1; transform: translateY(0); } 80%,100% { opacity: 0; transform: translateY(12px); } }
+
+/* ---------- Responsive: hero ---------- */
+@media (max-width: 960px) {
+    .hero { padding: 110px 0 70px; }
+    .hero-container { grid-template-columns: 1fr; gap: 20px; }
+    .hero-content { max-width: 640px; }
+    .scroll-cue { display: none; }
+}
+
+@media (max-width: 640px) {
+    .hero { padding: 100px 0 56px; min-height: auto; }
+    .status-group { flex-direction: column; align-items: stretch; gap: 8px; margin-bottom: 22px; }
+    .status-pill { width: 100%; font-size: .78rem; padding: 8px 14px; border-radius: 16px; }
+    .status-pill--loc { font-size: .74rem; padding: 8px 14px; }
+    .hero-bio { font-size: .98rem; }
+    .hero-subtitle { min-height: 3.2em; }
+    .hero-buttons { flex-direction: column; max-width: 100%; }
+    .hero-buttons .btn { width: 100%; }
+    .hero-meta { max-width: 100%; }
+}
