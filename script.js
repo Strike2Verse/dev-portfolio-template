@@ -234,5 +234,70 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             ctx.restore();
         }
+
+        function drawMoons(ring, behind) {
+            ring.moons.forEach(m => {
+                const pt = project(ring, m.a + ring.angle);
+                if (pt.behind !== behind) return;
+                const g = ctx.createRadialGradient(pt.x - m.r * 0.35, pt.y - m.r * 0.35, m.r * 0.05, pt.x, pt.y, m.r);
+                g.addColorStop(0, "rgba(245,235,255,0.98)");
+                g.addColorStop(0.5, MOON);
+                g.addColorStop(1, "rgba(30,10,65,0.85)");
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(pt.x, pt.y, m.r, 0, Math.PI * 2);
+                ctx.fillStyle = g;
+                ctx.shadowColor = ring.c + "0.9)";
+                ctx.shadowBlur = m.r * (small() ? 1.8 : 3.5);
+                ctx.fill();
+                ctx.restore();
+            });
+        }
+
+        // Fallback planet drawn in code (used until/unless the image loads)
+        function drawFallbackPlanet() {
+            const R = 300;
+            ctx.save();
+            const atmo = ctx.createRadialGradient(CX, CY, R * 0.9, CX, CY, R * 1.25);
+            atmo.addColorStop(0, "rgba(139,92,246,0.35)");
+            atmo.addColorStop(1, "rgba(139,92,246,0)");
+            ctx.fillStyle = atmo;
+            ctx.beginPath(); ctx.arc(CX, CY, R * 1.25, 0, Math.PI * 2); ctx.fill();
+
+            ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.clip();
+            const body = ctx.createRadialGradient(CX - R * 0.35, CY - R * 0.4, R * 0.05, CX, CY, R);
+            body.addColorStop(0, "#d9c8ff");
+            body.addColorStop(0.35, "#8b5cf6");
+            body.addColorStop(0.75, "#3b1d8f");
+            body.addColorStop(1, "#120a2e");
+            ctx.fillStyle = body;
+            ctx.fillRect(CX - R, CY - R, R * 2, R * 2);
+
+            // soft bands
+            ctx.globalAlpha = 0.14;
+            for (let i = -4; i <= 4; i++) {
+                ctx.fillStyle = i % 2 ? "#22d3ee" : "#ffffff";
+                ctx.beginPath();
+                ctx.ellipse(CX, CY + i * 62, R * 1.1, 14 + Math.abs(i) * 2, -0.18, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+
+            // terminator shadow
+            const shade = ctx.createLinearGradient(CX - R, CY - R, CX + R, CY + R);
+            shade.addColorStop(0.45, "rgba(5,3,15,0)");
+            shade.addColorStop(1, "rgba(5,3,15,0.75)");
+            ctx.fillStyle = shade;
+            ctx.fillRect(CX - R, CY - R, R * 2, R * 2);
+            ctx.restore();
+
+            // rim light
+            ctx.save();
+            ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2);
+            ctx.strokeStyle = "rgba(196,170,255,0.35)"; ctx.lineWidth = 2;
+            ctx.shadowColor = "rgba(139,92,246,0.9)"; ctx.shadowBlur = 30;
+            ctx.stroke();
+            ctx.restore();
+        }
     })();
 });
