@@ -150,4 +150,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         document.addEventListener("visibilitychange", syncTyping);
     }
+
+    /* ---------------- 9. Planet + rings canvas ---------------- */
+    (function initPlanet() {
+        const canvas = document.getElementById("rings-canvas");
+        const hero = document.getElementById("home");
+        const ctx = canvas?.getContext("2d");
+        if (!canvas || !ctx) return;
+
+        const SIZE = 1200, CX = SIZE / 2, CY = SIZE / 2;
+        canvas.width = SIZE;
+        canvas.height = SIZE;
+
+        const small = () => isMobile();
+        const steps = () => (small() ? 140 : 260);
+        const RING_A = "rgba(195,165,255,";
+        const RING_B = "rgba(130,90,225,";
+        const MOON = "#b89cfc";
+
+        const rings = [
+            { rx: 380, ry: 98,  tilt: -12, c: RING_A, lw: 1.35, angle: 0.0, speed: 0.0055, moons: [{ a: 0.4, r: 8.5 }, { a: 2.55, r: 7.5 }, { a: 4.3, r: 6.5 }] },
+            { rx: 435, ry: 122, tilt: -7,  c: RING_B, lw: 1.45, angle: 0.85, speed: 0.0042, moons: [{ a: 1.1, r: 8.5 }, { a: 3.65, r: 7.5 }, { a: 5.5, r: 6.5 }] },
+            { rx: 490, ry: 146, tilt: -15, c: RING_A, lw: 1.1, angle: 1.8, speed: 0.0032, moons: [{ a: 0.7, r: 7.5 }, { a: 3.0, r: 6.5 }] },
+            { rx: 540, ry: 170, tilt: -4,  c: RING_B, lw: 1.2, angle: 2.6, speed: 0.0022, moons: [{ a: 1.55, r: 7.5 }, { a: 4.05, r: 6.5 }] }
+        ];
+
+        const dust = Array.from({ length: small() ? 16 : 45 }, () => ({
+            x: Math.random() * SIZE, y: Math.random() * SIZE,
+            r: Math.random() * 2.2 + 0.8,
+            a: Math.random() * 0.45 + 0.18,
+            ts: Math.random() * 0.03 + 0.01, tp: Math.random() * Math.PI * 2,
+            dx: (Math.random() - 0.5) * 0.16, dy: (Math.random() - 0.5) * 0.16,
+            front: Math.random() > 0.4
+        }));
+
+        const project = (ring, ang) => {
+            const t = ring.tilt * Math.PI / 180;
+            const ex = ring.rx * Math.cos(ang), ey = ring.ry * Math.sin(ang);
+            return { x: CX + ex * Math.cos(t) - ey * Math.sin(t), y: CY + ex * Math.sin(t) + ey * Math.cos(t), behind: ey < 0 };
+        };
+    })();
 });
