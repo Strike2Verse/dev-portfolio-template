@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <b>HTML5</b> · <b>CSS3</b> · <b>JavaScript</b> · <a href="LICENSE">License</a>
+  <kbd>&nbsp;HTML5&nbsp;</kbd> <kbd>&nbsp;CSS3&nbsp;</kbd> <kbd>&nbsp;JavaScript&nbsp;</kbd> <a href="LICENSE"><kbd>&nbsp;License&nbsp;</kbd></a>
 </p>
 
 ---
