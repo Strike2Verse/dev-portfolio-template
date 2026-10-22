@@ -151,6 +151,17 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener("visibilitychange", syncTyping);
     }
 
+    /* ---------------- 8. Card spotlight + subtle tilt (desktop) ---------------- */
+    if (canHover && !reduceMotion) {
+        document.querySelectorAll(".spotlight").forEach(card => {
+            card.addEventListener("pointermove", e => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+                card.style.setProperty("--my", `${e.clientY - r.top}px`);
+            });
+        });
+    }
+
     /* ---------------- 9. Planet + rings canvas ---------------- */
     (function initPlanet() {
         const canvas = document.getElementById("rings-canvas");
