@@ -791,6 +791,22 @@ button { font: inherit; color: inherit; }
 
 .more-projects { display: flex; justify-content: center; margin-top: 44px; }
 
+/* ==========================================================================
+   CERTIFICATIONS
+   ========================================================================== */
+.cert-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;
+}
+.cert-card { padding: 26px 22px; display: flex; flex-direction: column; }
+.cert-card:hover { transform: translateY(-4px); }
+.cert-header { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
+.cert-icon { width: 48px; height: 48px; flex-shrink: 0; display: grid; place-items: center; border-radius: 14px; font-size: 1.25rem; }
+.icon-cyan { background: rgba(34,211,238,.1); border: 1px solid rgba(34,211,238,.28); color: var(--cyan); }
+.icon-violet { background: rgba(139,92,246,.12); border: 1px solid rgba(139,92,246,.3); color: var(--violet-2); }
+.icon-orange { background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.28); color: #fb923c; }
+.icon-emerald { background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.28); color: var(--emerald); }
+.icon-blue { background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.28); color: #60a5fa; }
+
 /* ---------- Responsive: hero ---------- */
 @media (max-width: 960px) {
     .hero { padding: 110px 0 70px; }
