@@ -61,9 +61,11 @@ npx serve .
 
 ## 🎨 Customisation
 
-1. Replace the placeholder name, bio and links in `index.html`.
-2. Change the colors in the `:root` block at the top of `style.css`.
-3. Add your own projects and certifications to their sections.
+1. **Links and contact:** edit the `PROFILE` object at the top of `script.js`. Your email, GitHub, LinkedIn, project and certification links all come from there. Leave a value empty and its button shows "coming soon".
+2. **Text and sections:** replace the placeholder name, bio, skills, projects and certifications in `index.html`.
+3. **Typing headline:** change the `phrases` list in `script.js`.
+4. **Colours and fonts:** change the variables in the `:root` block at the top of `style.css`.
+5. **Planet image:** swap `assets/planet.webp`. If it's missing, a planet drawn in code is used instead.
 
 ## 📄 License
 
