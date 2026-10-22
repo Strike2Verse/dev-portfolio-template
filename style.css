@@ -513,6 +513,16 @@ button { font: inherit; color: inherit; }
 .cat-icon--amber { background: rgba(251,191,36,.1); border-color: rgba(251,191,36,.28); color: var(--amber); }
 .cat-icon--emerald { background: rgba(52,211,153,.1); border-color: rgba(52,211,153,.28); color: var(--emerald); }
 
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--font-mono); font-size: .8rem; color: var(--muted);
+    padding: 7px 13px; border-radius: 9px; background: rgba(255,255,255,.035); border: 1px solid var(--border);
+    transition: all .2s var(--ease);
+}
+.chip i { color: var(--violet-2); }
+.chip:hover { color: #fff; border-color: rgba(139,92,246,.5); background: rgba(139,92,246,.12); transform: translateY(-1px); }
+
 /* ---------- Responsive: hero ---------- */
 @media (max-width: 960px) {
     .hero { padding: 110px 0 70px; }
