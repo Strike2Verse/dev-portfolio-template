@@ -535,6 +535,10 @@ button { font: inherit; color: inherit; }
     .section { padding: 88px 0; scroll-margin-top: 16px; }
 }
 
+@media (max-width: 760px) {
+    .skills-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 640px) {
     .container, .hero-container { padding: 0 16px; }
     .section { padding: 72px 0; scroll-margin-top: 20px; }
@@ -554,8 +558,13 @@ button { font: inherit; color: inherit; }
 
     .about-main-card { padding: 26px 20px; }
     .focus-grid { grid-template-columns: 1fr; }
+    .skill-card { padding: 22px 18px; }
 }
 
 @media (hover: none) {
-    .card:hover, .focus-card:hover { transform: none; }
+    .card:hover, .focus-card:hover, .skill-card:hover { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
 }
