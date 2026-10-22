@@ -111,4 +111,43 @@ document.addEventListener("DOMContentLoaded", () => {
     closeBtn?.addEventListener("click", () => setMenu(false));
     backdrop?.addEventListener("click", () => setMenu(false));
     document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+    /* ---------------- 5. Typewriter ---------------- */
+    const typingEl = document.getElementById("typing-text");
+    const phrases = [
+        "Project One",
+        "Project Two",
+        "Project Three",
+        "Project Four",
+        "Project Five"
+    ];
+    if (typingEl && !reduceMotion) {
+        let p = 0, c = 0, deleting = false, timer = null, running = true;
+        typingEl.textContent = "";
+
+        function tick() {
+            const phrase = phrases[p];
+            c += deleting ? -1 : 1;
+            typingEl.textContent = phrase.slice(0, c);
+            let delay = deleting ? 35 : 70;
+            if (!deleting && c === phrase.length) { delay = 2000; deleting = true; }
+            else if (deleting && c === 0) { deleting = false; p = (p + 1) % phrases.length; delay = 350; }
+            timer = setTimeout(tick, delay);
+        }
+
+        function setTyping(on) {
+            if (on === running) return;
+            running = on;
+            if (on) tick(); else { clearTimeout(timer); timer = null; }
+        }
+
+        tick();
+        const heroEl = document.getElementById("home");
+        let heroVisible = true;
+        const syncTyping = () => setTyping(heroVisible && !document.hidden);
+        if (heroEl && "IntersectionObserver" in window) {
+            new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; syncTyping(); }).observe(heroEl);
+        }
+        document.addEventListener("visibilitychange", syncTyping);
+    }
 });

@@ -357,6 +357,15 @@ button { font: inherit; color: inherit; }
     font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 500; color: var(--muted);
     margin-bottom: 22px; min-height: 1.6em;
 }
+.typed-wrap { color: var(--text); white-space: nowrap; }
+#typing-text {
+    background: linear-gradient(90deg, var(--cyan), var(--violet-2));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.caret {
+    display: inline-block; width: 2px; height: 1.05em; margin-left: 3px; vertical-align: -0.15em;
+    background: var(--cyan); animation: blink 0.9s steps(2, start) infinite;
+}
 .hero-bio { font-size: 1.07rem; color: var(--muted); max-width: 540px; margin-bottom: 34px; line-height: 1.75; }
 .hero-bio strong { color: var(--text); font-weight: 600; }
 
@@ -397,6 +406,7 @@ button { font: inherit; color: inherit; }
     .status-pill--loc { font-size: .74rem; padding: 8px 14px; }
     .hero-bio { font-size: .98rem; }
     .hero-subtitle { min-height: 3.2em; }
+    .typed-wrap { white-space: normal; }
     .hero-buttons { flex-direction: column; max-width: 100%; }
     .hero-buttons .btn { width: 100%; }
     .hero-meta { max-width: 100%; }
