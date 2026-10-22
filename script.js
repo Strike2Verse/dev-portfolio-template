@@ -79,11 +79,22 @@ document.addEventListener("DOMContentLoaded", () => {
         toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
     }
 
-    /* ---------------- 2. Navbar state ---------------- */
+    /* ---------------- 2. Scroll: progress bar + navbar state ---------------- */
+    const progress = document.getElementById("scrollProgress");
     const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
+    let scrollTicking = false;
+
+    function onScroll() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        if (progress) progress.style.transform = `scaleX(${ratio})`;
         navbar?.classList.toggle("is-scrolled", window.scrollY > 24);
+        scrollTicking = false;
+    }
+    window.addEventListener("scroll", () => {
+        if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(onScroll); }
     }, { passive: true });
+    onScroll();
 
     /* ---------------- 3. Active nav link ---------------- */
     const navLinks = document.querySelectorAll(".nav-link, .mobile-link");
