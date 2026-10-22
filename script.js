@@ -75,4 +75,22 @@ document.addEventListener("DOMContentLoaded", () => {
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
     }
+
+    /* ---------------- 2. Navbar state ---------------- */
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+        navbar?.classList.toggle("is-scrolled", window.scrollY > 24);
+    }, { passive: true });
+
+    /* ---------------- 3. Active nav link ---------------- */
+    const navLinks = document.querySelectorAll(".nav-link, .mobile-link");
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.id;
+            navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${id}`));
+        });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    document.querySelectorAll("section[id]").forEach(s => sectionObserver.observe(s));
+
 });
